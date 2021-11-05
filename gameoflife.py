@@ -2,11 +2,14 @@
 #<2 nb dead || >3
 # =3 birth
 import random
+from typing import Counter
 from colorama import Fore, Back, Style
 from os import system
 import time
 cho =[0,1]
 palette= []
+prev1 = []
+prev2 = []
 nN = int(input("Size of square:"))
 ts = float(input("timeti wait"))
 round =0
@@ -94,5 +97,13 @@ while(True):
 	round +=1
 	if(h=='q'):
 		break
+	prev2 = prev1
+	prev1 = palette
 	palette = nextR()
 	printpal()
+	if(palette == prev1):
+		print("Static or all dead",round)
+		break
+	if(palette == prev2):
+		print("Trapped in a loop", round)
+		break
